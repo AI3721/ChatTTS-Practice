@@ -1,0 +1,1 @@
+https://huggingface.co/2Noise/ChatTTS/tree/main/asset
