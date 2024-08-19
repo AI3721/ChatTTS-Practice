@@ -12,5 +12,10 @@ uvicorn main:app --port 7788
 cd gradio
 python demo.py
 ```
+## 参考
+
+https://github.com/2noise/ChatTTS
+
+https://github.com/6drf21e/ChatTTS_colab
 > [!Note]
 > 本人是初学者，希望大家可以多提一点建议！
