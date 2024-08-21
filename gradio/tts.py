@@ -22,6 +22,21 @@ speakers = {
 }
 
 
+# js插入文本
+def js_insert(content):
+    return f"""value => {{
+        var content = ' {content} ';
+        var text_div = document.getElementById('input_text');
+        var textarea = text_div.querySelector('textarea');
+        var cursorPosition = textarea.selectionStart;
+        var value = textarea.value;
+        var new_value = value.substring(0, cursorPosition) + content + value.substring(cursorPosition);
+        textarea.value = new_value;
+        textarea.selectionStart = cursorPosition + content.length;
+        textarea.selectionEnd = cursorPosition + content.length;
+        textarea.focus();
+        return new_value
+    }}"""
 # 更换sample
 def change_sample(sample_audio):
     if sample_audio is None:
@@ -125,14 +140,21 @@ def create_tts_block():
             with gr.Row():
                 with gr.Column(min_width=0, scale=2):
                     with gr.Tab(label="Input Text"):
-                        input_text = gr.Textbox(label="", lines=12, max_lines=12, show_copy_button=True, interactive=True, value=ex.input_text)
+                        input_text = gr.Textbox(label="", lines=9, max_lines=9, show_copy_button=True, interactive=True, value=ex.input_text, elem_id="input_text")
                     with gr.Tab(label="Sample Text"):
-                        sample_text = gr.Textbox(label="", lines=12, max_lines=12, show_copy_button=True, interactive=True)
+                        sample_text = gr.Textbox(label="", lines=9, max_lines=9, show_copy_button=True, interactive=True)
+                    with gr.Row(): # 文本插入辅助控制词
+                        laugh_btn = gr.Button("笑声 + [laugh]", min_width=0)
+                        laugh_btn.click(fn=None, outputs=input_text, js=js_insert("[laugh]"))
+                        lbreak_btn = gr.Button("长停顿 + [lbreak]", min_width=0)
+                        lbreak_btn.click(fn=None, outputs=input_text, js=js_insert("[lbreak]"))
+                        uv_break_btn = gr.Button("短停顿 + [uv_break]", min_width=0)
+                        uv_break_btn.click(fn=None, outputs=input_text, js=js_insert("[uv_break]"))
                 with gr.Column(min_width=0, scale=1):
                     with gr.Tab(label="Sample Audio"):
                         sample_audio = gr.Audio(label="", type="filepath", waveform_options=gr.WaveformOptions(sample_rate=24000))
                     with gr.Tab(label="Emb"):
-                        sample_emb = gr.Textbox(label="", lines=12, max_lines=12, show_copy_button=True, interactive=True)
+                        sample_emb = gr.Textbox(label="", lines=11, max_lines=11, show_copy_button=True, interactive=True)
             # 可调参数
             with gr.Accordion(label="可调参数：点击这里，可以尝试生成不同音色的声音！", open=False):
                 # Checkbox
