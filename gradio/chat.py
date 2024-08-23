@@ -17,7 +17,7 @@ def create_chat_block():
     with gr.Blocks() as chat_block:
         with gr.Column():
             # gr.Markdown("<h1 style='text-align: center; font-size: 2em'>Chat Bot</h1>")
-            chatbot = gr.Chatbot(label="AI 3721", avatar_images=['img/ME.png', 'img/AI.png'])
+            chatbot = gr.Chatbot(label="AI 3721", avatar_images=['image/ME.png', 'image/AI.png'])
             temperature = gr.Slider(label="Temperature", minimum=0.1, maximum=1.0, value=0.9)
             prompt = gr.Textbox(label="Prompt", lines=3, max_lines=3, autofocus=True)
 
