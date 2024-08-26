@@ -22,6 +22,8 @@ python demo.py
   ![文本转语音](/examples/文本转语音.png)
   ##### ② 自定义参数生成
   ![可调参数](/examples/可调参数.png)
+  ##### ③ 新增功能生成
+  ![新增功能](/examples/新增功能.png)
 </details>
 
 
