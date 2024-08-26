@@ -18,7 +18,7 @@ def load_enhancer(run_dir: str | Path | None, device):
     hp = HParams.load(run_dir)
     enhancer = Enhancer(hp)
     path = run_dir / "mp_rank_00_model_states.pt"
-    state_dict = torch.load(path, map_location="cpu")["module"]
+    state_dict = torch.load(path, map_location="cpu", weights_only=False)["module"]
     enhancer.load_state_dict(state_dict)
     enhancer.eval()
     enhancer.to(device)
