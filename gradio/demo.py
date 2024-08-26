@@ -10,4 +10,4 @@ with gr.Blocks() as demo:
         create_chat_block()
 
 gr.close_all()
-demo.launch(share=False)
+demo.launch(inbrowser=True, share=False)
