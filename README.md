@@ -1,4 +1,4 @@
-# ChatTTS_Practice
+# ChatTTS-Practice
 > [!TIP]
 > 新手小白入门——基于ChatTTS的FastAPI+Gradio入门练习项目
 ## 项目运行
